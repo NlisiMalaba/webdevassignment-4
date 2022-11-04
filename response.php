@@ -1,5 +1,5 @@
 <?php
-    $id = $_POST['id'];
+    //$id = $_POST['id'];
     $name = $_POST['name'];
     $number = $_POST['number'];
     $email = $_POST['email'];

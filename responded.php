@@ -48,7 +48,7 @@
             $servername = "localhost";
             $username = "root";
             $password = "";
-            $database = "responses";
+            $database = "enquiries";
 
             //Database connection
 

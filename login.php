@@ -5,11 +5,11 @@
 
     //Database Connection
 
-    $con = new mysqli("localhost","root","","login");
+    $con = new mysqli("localhost","root","","enquiries");
     if($con->connect_error){
        die("Failed to connect : ".$con->connect_error);
     } else {
-        $stmt = $con->prepare("SELECT * FROM login WHERE Username = ?");
+        $stmt = $con->prepare("SELECT * FROM login WHERE username = ?");
         $stmt -> bind_param("s", $username);
         $stmt->execute();
         $stmt_result = $stmt->get_result();
