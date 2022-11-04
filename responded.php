@@ -27,9 +27,9 @@
     <!--NAVIGATION BAR END-->
 
     <!--RECORDS START-->
-    <h5>List of Unresponsed Enquiries</h5>
+    <h5>List of Responsed Enquiries</h5>
 
-    <h5><a href="responded.php">Click here to see Responsed Enquiries</a></h5>
+    <h5><a href="admin.php">Click here to see unresponsed Enquiries</a></h5>
     <br>
 
     <table class="table" style="margin: 50px;">
@@ -39,8 +39,7 @@
                 <th>Number</th>
                 <th>Email</th>
                 <th>Enquiry</th>
-                <!--<th>Response</th>-->
-                <th>Action</th>
+                <th>Response</th>
             </tr>
         </thead>
 
@@ -49,7 +48,7 @@
             $servername = "localhost";
             $username = "root";
             $password = "";
-            $database = "enquiries";
+            $database = "responses";
 
             //Database connection
 
@@ -60,7 +59,7 @@
             }
 
             // Read all data from database table
-            $sql = "SELECT * FROM enquiries";
+            $sql = "SELECT * FROM responses";
             $result = $connection->query($sql);
 
             if (!$result){
@@ -75,9 +74,7 @@
                         <td>" . $row["number"] . "</td>
                         <td>" . $row["email"] . "</td>
                         <td>" . $row["enquiry"] . "</td>
-                        <td>
-                            <a class='btn btn-primary btn-sm' href='response.html'>Respond</a>
-                        </td>
+                        <td>" . $row["response"] . " </td>
                     </tr>";
             }            
             ?>

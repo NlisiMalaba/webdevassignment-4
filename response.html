@@ -30,13 +30,18 @@
     <!--ENQUIRY SECTION START-->
     <section class="contact">
         <header>
-            <h5>Enquire From Us</h5>
+            <h5>Response Page</h5>
         </header>
 
         <div class="about container" id="about">
             <div class="container">
                 <div id="error"></div>
                 <form action="enquiries.php" method="post" id="contact" name="form">
+                    <div>
+                        <label for="name">ID</label>
+                        <input type="text" name="id" id="id" required>
+                    </div>   
+
                     <div>
                         <label for="name">Name</label>
                         <input type="text" name="name" id="name" required>
@@ -52,6 +57,11 @@
                     <div>
                         <label for="enquiry">Enquiry</label>
                         <textarea name="enquiry" id="enquiry" cols="30" rows="10" required></textarea>
+                    </div> 
+
+                    <div>
+                        <label for="response">Response</label>
+                        <textarea name="response" id="response" cols="30" rows="10" required></textarea>
                     </div>
                 
                     <button name="submit" type="submit">Submit</button>  
@@ -61,3 +71,4 @@
     </section>
     <!--ENQUIRY SECTION END-->
 </body>
+</html>

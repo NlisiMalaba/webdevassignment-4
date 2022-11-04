@@ -13,7 +13,7 @@
         $stmt = $conn->prepare("INSERT INTO enquiries(name, number, email, enquiry) VALUES (?,?,?,?)");
         $stmt->bind_param("siss", $name, $number, $email, $enquiry);
         $stmt->execute();
-        echo "Sent Successfully";
+        echo '<script type="text/javascript"> alert("Sent Successfull") </script>';
         $stmt->close();
         $conn->close();
     }
