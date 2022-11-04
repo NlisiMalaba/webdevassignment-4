@@ -1,3 +1,11 @@
+<?php
+    include 'config.php';
+
+    $sql = "SELECT * FROM enquiries";
+
+    $result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +15,7 @@
     <title>Formal Wear Hub</title>
     <link rel="stylesheet" href="style.css">
     <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
     <!--NAVIGATION BAR START-->
@@ -26,65 +34,40 @@
     </header>
     <!--NAVIGATION BAR END-->
 
-    <!--RECORDS START-->
-    <h5>List of Unresponsed Enquiries</h5>
+    <div class="container">
+        <h5>List of Enquiries</h5>
 
-    <h5><a href="responded.php">Click here to see Responsed Enquiries</a></h5>
-    <br>
+        <table class="table">
+            <head>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Number</th>
+                    <th>Email</th>
+                    <th>Enquiry</th>
+                    <th>Action</th>
+                </tr>
+            </head>
+            <tbody>
+                <?php
+                    if($result->num_rows>0){
+                        while($row = $result->fetch_assoc()){
+                ?>
 
-    <table class="table" style="margin: 50px;">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Number</th>
-                <th>Email</th>
-                <th>Enquiry</th>
-                <!--<th>Response</th>-->
-                <th>Action</th>
-            </tr>
-        </thead>
+                <tr>
+                    <td><?php echo $row['id']; ?></td>
+                    <td><?php echo $row['name']; ?></td>
+                    <td><?php echo $row['number']; ?></td>
+                    <td><?php echo $row['email']; ?></td>
+                    <td><?php echo $row['enquiry']; ?></td>
+                    <td><a class="btn btn-info" href="response.php?id=<?php echo $row['id']; ?>">Respond</a>&nbsp;</td>
+                </tr>
 
-        <tbody>
-            <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $database = "enquiries";
-
-            //Database connection
-
-            $connection = new mysqli($servername, $username, $password, $database);
-
-            if ($connection->connect_error){
-                die("Connection Failed: ".$connection->connect_error);
-            }
-
-            // Read all data from database table
-            $sql = "SELECT * FROM enquiries";
-            $result = $connection->query($sql);
-
-            if (!$result){
-                die("Invalid query: ".$connection->error);
-            }
-
-            //Read data of each row
-            while($row = $result->fetch_assoc()){
-                echo "
-                    <tr>
-                        <td>" . $row["name"] . "</td>
-                        <td>" . $row["number"] . "</td>
-                        <td>" . $row["email"] . "</td>
-                        <td>" . $row["enquiry"] . "</td>
-                        <td>
-                            <a class='btn btn-primary btn-sm' href='response.html'>Respond</a>
-                        </td>
-                    </tr>";
-            }            
-            ?>
-        </tbody>
-    </table>
- 
-    
-    <!--RECORDS END-->
-
+                <?php }
+                    }
+                    ?>
+            </tbody>
+        </table>
+    </div>
 </body>
+</html>
